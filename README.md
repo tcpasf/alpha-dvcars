@@ -58,7 +58,7 @@ Config.ProtectPlayerCurrentVehicle = true -- Protect vehicles players are in or 
 - Arabic Localization by **AlphaDev**
 
 ## License
-© 2024 AlphaDev. All Rights Reserved.
+© 2025 AlphaDev. All Rights Reserved.
 
 This resource is protected by copyright law. Unauthorized distribution, modification, or resale is strictly prohibited.
 

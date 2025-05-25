@@ -1,0 +1,263 @@
+/* Ultra-modern styling for Alpha-DVCars UI with Arabic support */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+    --primary-color: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary-color: #3a0ca3;
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --info-color: #3498db;
+    --dark-bg: rgba(13, 17, 23, 0.9);
+    --border-color: rgba(99, 102, 241, 0.7);
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --glow-color: rgba(67, 97, 238, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    overflow: hidden;
+    direction: rtl; /* For Arabic text direction */
+}
+
+#container {
+    position: absolute;
+    top: 25%; /* Positioned higher on the screen */
+    left: 5%;
+    transform: translateY(-50%);
+    display: none; /* Hidden by default, will be shown via JS */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.panel {
+    width: 220px;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+/* Advanced glowing border effect with animation */
+@keyframes borderGlow {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+.panel::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--info-color), var(--primary-color));
+    background-size: 400% 400%;
+    z-index: -1;
+    opacity: 0.7;
+    animation: borderGlow 3s ease infinite, gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.header {
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.header h2 {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+    padding: 15px;
+}
+
+.status-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.status-indicator, .countdown-section, .interval-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    position: relative;
+}
+
+.status-indicator::after, .countdown-section::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+.status-label, .countdown-label, .interval-label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.status-text, .countdown-text, .interval-text {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Glossy effect for status indicators */
+.status-text::before, .countdown-text::before, .interval-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    border-radius: 6px 6px 0 0;
+}
+
+.status-text.active {
+    color: var(--text-primary);
+    background-color: var(--success-color);
+}
+
+.status-text.inactive {
+    color: var(--text-primary);
+    background-color: var(--danger-color);
+}
+
+.countdown-text {
+    color: var(--text-primary);
+    background-color: var(--info-color);
+    min-width: 60px;
+    text-align: center;
+    position: relative;
+}
+
+/* Enhanced pulsing effect for countdown */
+@keyframes pulseGlow {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 5px rgba(243, 156, 18, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
+}
+
+.countdown-text.urgent {
+    animation: pulseGlow 1.2s infinite;
+    background-color: var(--warning-color);
+}
+
+.interval-text {
+    color: var(--text-primary);
+    background-color: var(--secondary-color);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Enhanced animations for appearing/disappearing */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutDown {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+.fade-in {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.fade-out {
+    animation: fadeOutDown 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Advanced progress bar with gradient and animation */
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-top: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--warning-color), var(--danger-color));
+    background-size: 200% 100%;
+    border-radius: 3px;
+    transition: width 1s linear;
+    position: relative;
+    animation: gradientShift 2s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Add shine effect to progress bar */
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}

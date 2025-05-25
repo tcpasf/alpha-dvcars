@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام حذف المركبات التلقائي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div class="panel">
+            <div class="header">
+                <h2>تنظيف المركبات التلقائي</h2>
+            </div>
+
+            <div class="content">
+                <div class="status-section">
+                    <div class="status-indicator">
+                        <span class="status-label">الحالة:</span>
+                        <span id="statusText" class="status-text active">نشط</span>
+                    </div>
+
+                    <div class="countdown-section">
+                        <span class="countdown-label">التنظيف التالي:</span>
+                        <span id="countdownText" class="countdown-text">--:--</span>
+                    </div>
+
+                    <div class="interval-display">
+                        <span class="interval-label">الفاصل الزمني:</span>
+                        <span id="intervalText" class="interval-text">10 دقيقة</span>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
